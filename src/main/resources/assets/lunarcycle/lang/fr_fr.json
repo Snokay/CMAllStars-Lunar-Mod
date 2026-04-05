@@ -1,0 +1,29 @@
+{
+  "lunarcycle.moon.normal.name":    "Lune Normale",
+  "lunarcycle.moon.normal.message": "Une nuit tranquille sous une lune ordinaire.",
+
+  "lunarcycle.moon.azure.name":     "Lune Azur",
+  "lunarcycle.moon.azure.message":  "La nuit scintille d'une lumière bleue éclatante. Les Pokémon chromatiques sont plus fréquents cette nuit...",
+
+  "lunarcycle.moon.amethyst.name":    "Lune Améthyste",
+  "lunarcycle.moon.amethyst.message": "Un éclat violet profond envahit le ciel. Les Pokémon rares émergent de l'ombre...",
+
+  "lunarcycle.moon.golden.name":    "Lune Dorée",
+  "lunarcycle.moon.golden.message": "La lune brille comme de l'or pur. Vos Pokémon grandiront plus vite cette nuit...",
+
+  "lunarcycle.moon.emerald.name":    "Lune Émeraude",
+  "lunarcycle.moon.emerald.message": "Une lumière verdoyante baigne la terre. Les Pokémon Plante et Eau s'épanouissent sous cette lueur...",
+
+  "lunarcycle.moon.scarlet.name":    "Lune Écarlate",
+  "lunarcycle.moon.scarlet.message": "Le ciel s'embrase de rouge. Les Pokémon Feu et Combat sont galvanisés par la lumière cramoisie...",
+
+  "lunarcycle.moon.silver.name":    "Lune d'Argent",
+  "lunarcycle.moon.silver.message": "Un halo argenté dérive dans la nuit. La fortune sourit à ceux qui osent sortir...",
+
+  "lunarcycle.moon.dark.name":    "Lune Noire",
+  "lunarcycle.moon.dark.message": "La lune est engloutie par les ténèbres. Les Pokémon Spectre et Ténèbres rôdent en plus grand nombre...",
+
+  "lunarcycle.dawn.message": "La lune s'efface. Son pouvoir décline jusqu'à la prochaine nuit spéciale...",
+
+  "lunarcycle.command.current_moon": "Lune Actuelle"
+}

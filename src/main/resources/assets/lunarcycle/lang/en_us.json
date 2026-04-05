@@ -1,0 +1,29 @@
+{
+  "lunarcycle.moon.normal.name":    "Normal Moon",
+  "lunarcycle.moon.normal.message": "A quiet night under a plain moon.",
+
+  "lunarcycle.moon.azure.name":     "Azure Moon",
+  "lunarcycle.moon.azure.message":  "The night glimmers with a brilliant blue light. Shiny Pokémon are more common tonight...",
+
+  "lunarcycle.moon.amethyst.name":    "Amethyst Moon",
+  "lunarcycle.moon.amethyst.message": "A deep violet glow fills the sky. Rare Pokémon emerge from the shadows...",
+
+  "lunarcycle.moon.golden.name":    "Golden Moon",
+  "lunarcycle.moon.golden.message": "The moon shines like pure gold. Your Pokémon will grow stronger tonight...",
+
+  "lunarcycle.moon.emerald.name":    "Emerald Moon",
+  "lunarcycle.moon.emerald.message": "A verdant light washes over the land. Grass and Water Pokémon thrive in this glow...",
+
+  "lunarcycle.moon.scarlet.name":    "Scarlet Moon",
+  "lunarcycle.moon.scarlet.message": "The sky burns red. Fire and Fighting Pokémon are empowered by the crimson light...",
+
+  "lunarcycle.moon.silver.name":    "Silver Moon",
+  "lunarcycle.moon.silver.message": "A pale silver radiance drifts across the night. Fortune favors those who venture out...",
+
+  "lunarcycle.moon.dark.name":    "Dark Moon",
+  "lunarcycle.moon.dark.message": "The moon is swallowed by darkness. Ghost and Dark Pokémon lurk in greater numbers...",
+
+  "lunarcycle.dawn.message": "The moon fades. Its power wanes until the next special night...",
+
+  "lunarcycle.command.current_moon": "Current Moon"
+}

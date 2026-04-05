@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "lunarcycle",
+  "version": "${version}",
+  "name": "CobbleMon All Stars Lunar",
+  "description": "Adds a special moon cycle with Cobblemon buffs, sky colors and chat messages. By Snokayy.",
+  "authors": ["Snokayy"],
+  "contact": {
+    "sources": "https://github.com/Snokayy"
+  },
+  "license": "MIT",
+  "icon": "assets/logo/modlogo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main":   ["com.lunarcycle.LunarCycleMod"],
+    "client": ["com.lunarcycle.LunarCycleClient"]
+  },
+  "mixins": ["lunarcycle.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "fabric-api":   "*",
+    "minecraft":    "~1.21.1",
+    "cobblemon":    "*"
+  }
+}
