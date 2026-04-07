@@ -47,8 +47,17 @@ public class LunarManager {
      * Requires permission level 2 (enforced by the command).
      */
     public void setOverride(MoonType moon) {
-        moonOverride = moon;
-        applyMoon(moon);
+        moonOverride  = moon;
+        currentMoon   = moon;
+        syncToAllClients();
+        // Only apply Cobblemon buffs if it is currently night
+        ServerWorld overworld = server.getWorld(World.OVERWORLD);
+        if (overworld != null) {
+            long timeOfDay = overworld.getTimeOfDay() % 24000;
+            if (timeOfDay >= 13000 && timeOfDay < 23000) {
+                CobblemonHooks.applyMoonBuffs(moon);
+            }
+        }
     }
 
     /** Removes the forced moon override, reverting to the scheduled moon. */
@@ -56,8 +65,18 @@ public class LunarManager {
         moonOverride = null;
         ServerWorld overworld = server.getWorld(World.OVERWORLD);
         if (overworld != null) {
-            long absoluteDay = overworld.getTimeOfDay() / 24000L;
-            applyMoon(MoonType.forDay(absoluteDay));
+            long time        = overworld.getTimeOfDay();
+            long absoluteDay = time / 24000L;
+            long timeOfDay   = time % 24000;
+            MoonType scheduled = MoonType.forDay(absoluteDay);
+            currentMoon = scheduled;
+            syncToAllClients();
+            // Restore buffs only if it is night
+            if (timeOfDay >= 13000 && timeOfDay < 23000 && scheduled.isSpecial()) {
+                CobblemonHooks.applyMoonBuffs(scheduled);
+            } else {
+                CobblemonHooks.removeMoonBuffs();
+            }
         }
     }
 
@@ -69,24 +88,32 @@ public class LunarManager {
 
         long time        = overworld.getTimeOfDay();
         long absoluteDay = time / 24000L;
+        long timeOfDay   = time % 24000;
 
         // Use override if active, otherwise follow the schedule
         MoonType moon = moonOverride != null ? moonOverride : MoonType.forDay(absoluteDay);
 
+        // Update the current moon for client sync/visuals whenever it changes,
+        // but do NOT apply Cobblemon buffs yet — that only happens at nightfall.
         if (moon != currentMoon) {
-            applyMoon(moon);
+            currentMoon = moon;
+            syncToAllClients();
         }
 
         // Night: ticks 13000–23000 (sunset to sunrise)
-        boolean nowNight = (time % 24000) >= 13000 && (time % 24000) < 23000;
+        boolean nowNight = timeOfDay >= 13000 && timeOfDay < 23000;
 
         if (nowNight && !isNight) {
+            // Night is starting — now it's safe to activate moon buffs
             isNight        = true;
             announcedNight = false;
+            if (moon.isSpecial()) {
+                CobblemonHooks.applyMoonBuffs(moon);
+            }
         }
 
         if (nowNight && !announcedNight) {
-            long tickInNight = (time % 24000) - 13000;
+            long tickInNight = timeOfDay - 13000;
             if (tickInNight >= 40) { // ~2 seconds after nightfall
                 if (moon.isSpecial()) {
                     announceNight(moon);
@@ -97,7 +124,7 @@ public class LunarManager {
         }
 
         if (!nowNight && isNight) {
-            // Dawn
+            // Dawn — remove buffs and reset state
             isNight = false;
             moonOverride = null; // override lasts one night only
             CobblemonHooks.removeMoonBuffs();
@@ -106,14 +133,6 @@ public class LunarManager {
                 wasCustomNight = false;
             }
         }
-    }
-
-    // ── Internal ─────────────────────────────────────────────────────────────
-
-    private void applyMoon(MoonType moon) {
-        currentMoon = moon;
-        CobblemonHooks.applyMoonBuffs(moon);
-        syncToAllClients();
     }
 
     // ── Announcements ────────────────────────────────────────────────────────
